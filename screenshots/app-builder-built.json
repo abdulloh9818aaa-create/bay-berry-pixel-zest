@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Kingside",
+      "hasCanvas": false,
+      "bodyTextLen": 240,
+      "bodyTextHash": "aa92be607ccdadfdbaea09d4db2ace1c518becb3f4e33306d321230e1653a2bc",
+      "bodyTextPrefix": "ШАХМАТЫ Kingside Тихая доска. Полные правила. Машина, которая ду",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Kingside",
+      "hasCanvas": false,
+      "bodyTextLen": 240,
+      "bodyTextHash": "aa92be607ccdadfdbaea09d4db2ace1c518becb3f4e33306d321230e1653a2bc",
+      "bodyTextPrefix": "ШАХМАТЫ Kingside Тихая доска. Полные правила. Машина, которая ду",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

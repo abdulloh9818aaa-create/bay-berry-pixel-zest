@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0c0b0a;
+  --color-surface: #141210;
+  --color-elevated: #1c1916;
+  --color-fg: #f0ece4;
+  --color-muted: #9a9388;
+  --color-subtle: #6e6860;
+  --color-border: #2c2723;
+  --color-accent: #d8d2c8;
+  --color-accent-fg: #0c0b0a;
+  --color-board-light: #e1d4be;
+  --color-board-dark: #6b5344;
+  --color-board-hl: #b7c4a8;
+  --color-check: #a45a4c;
+  --color-frame: #1a1613;
+  --color-piece-w: #f3eee4;
+  --color-piece-w-stroke: #2c2622;
+  --color-piece-b: #1a1714;
+  --color-piece-b-stroke: #d9d2c7;
+
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+
+  --text-2xs: 0.6875rem;
+
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100dvh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -8%,
+      color-mix(in oklab, var(--color-elevated) 88%, transparent) 0%,
+      transparent 62%
+    );
+  }
+
+  input[type="color"] {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 6px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.piece-w {
+  color: var(--color-piece-w);
+  --piece-stroke: var(--color-piece-w-stroke);
+}
+
+.piece-b {
+  color: var(--color-piece-b);
+  --piece-stroke: var(--color-piece-b-stroke);
+}
+
+.chess-piece svg {
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.32));
+  overflow: visible;
+}
+
+.legal-dot {
+  width: 28%;
+  height: 28%;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--color-fg) 30%, transparent);
+  pointer-events: none;
+}
+
+.legal-ring {
+  position: absolute;
+  inset: 7%;
+  border-radius: 9999px;
+  border: 3px solid color-mix(in oklab, var(--color-fg) 42%, transparent);
+  pointer-events: none;
+}
+
+.thinking-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-muted) 0%,
+    var(--color-fg) 48%,
+    var(--color-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: kingside-shimmer 1.6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes kingside-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.stagger-in > * {
+  opacity: 0;
+  transform: translateY(var(--motion-y-medium, 12px));
+  filter: blur(var(--motion-blur-md, 3px));
+  animation: kingside-enter 400ms var(--ease-smooth-out) forwards;
+}
+
+.stagger-in > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-in > *:nth-child(2) {
+  animation-delay: 50ms;
+}
+.stagger-in > *:nth-child(3) {
+  animation-delay: 100ms;
+}
+.stagger-in > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+.stagger-in > *:nth-child(5) {
+  animation-delay: 200ms;
+}
+.stagger-in > *:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+@keyframes kingside-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.modal-enter {
+  animation: kingside-modal 250ms var(--ease-smooth-out);
+}
+
+@keyframes kingside-modal {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-in > *,
+  .modal-enter,
+  .thinking-shimmer {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    color: var(--color-muted);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  .chess-piece {
+    transition: none !important;
+  }
+}

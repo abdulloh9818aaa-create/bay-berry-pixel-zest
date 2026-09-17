@@ -1,0 +1,1 @@
+import{i as e}from"./routes-DJqhp9vb.js";export{e as Chess};
